@@ -4,7 +4,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Opérationnel-success?style=for-the-badge&logo=github&color=1B5E3C" alt="Status" />
   <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge&color=007cc7" alt="Version" />
-  <img src="https://img.shields.io/badge/Rôle-PFE_OCP-orange?style=for-the-badge&color=f26522" alt="PFE OCP" />
+  <img src="https://img.shields.io/badge/Rôle-PFE_OCP-orange?style=for-the-badge&color=f26522" alt="PFA OCP" />
 </p>
 
 <p align="center">
