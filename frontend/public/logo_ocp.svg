@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Outer leaf-wreath curves -->
+  <path d="M 120,150 C 90,200 100,280 200,310 C 300,280 310,200 280,150" fill="none" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Left side leaves -->
+  <path d="M 120,150 C 110,130 135,120 145,140 C 140,155 130,160 120,150 Z" fill="#16a34a"/>
+  <path d="M 103,185 C 93,165 118,155 128,175 C 123,190 113,195 103,185 Z" fill="#15803d"/>
+  <path d="M 97,225 C 87,205 112,195 122,215 C 117,230 107,235 97,225 Z" fill="#16a34a"/>
+  <path d="M 104,265 C 94,245 119,235 129,255 C 124,270 114,275 104,265 Z" fill="#15803d"/>
+  <path d="M 127,300 C 117,280 142,270 152,290 C 147,305 137,310 127,300 Z" fill="#16a34a"/>
+
+  <!-- Right side leaves -->
+  <path d="M 280,150 C 290,130 265,120 255,140 C 260,155 270,160 280,150 Z" fill="#16a34a"/>
+  <path d="M 297,185 C 307,165 282,155 272,175 C 277,190 287,195 297,185 Z" fill="#15803d"/>
+  <path d="M 303,225 C 313,205 288,195 278,215 C 283,230 293,235 303,225 Z" fill="#16a34a"/>
+  <path d="M 296,265 C 306,245 281,235 271,255 C 276,270 286,275 296,265 Z" fill="#15803d"/>
+  <path d="M 273,300 C 283,280 258,270 248,290 C 253,305 263,310 273,300 Z" fill="#16a34a"/>
+
+  <!-- Central Star -->
+  <!-- Top point -->
+  <polygon points="200,120 180,170 200,195" fill="#15803d"/>
+  <polygon points="200,120 220,170 200,195" fill="#16a34a"/>
+  
+  <!-- Right-top point -->
+  <polygon points="275,175 225,180 200,195" fill="#15803d"/>
+  <polygon points="275,175 235,210 200,195" fill="#16a34a"/>
+
+  <!-- Right-bottom point -->
+  <polygon points="245,260 220,220 200,195" fill="#15803d"/>
+  <polygon points="245,260 195,230 200,195" fill="#16a34a"/>
+
+  <!-- Left-bottom point -->
+  <polygon points="155,260 205,230 200,195" fill="#15803d"/>
+  <polygon points="155,260 180,220 200,195" fill="#16a34a"/>
+
+  <!-- Left-top point -->
+  <polygon points="125,175 165,210 200,195" fill="#15803d"/>
+  <polygon points="125,175 175,180 200,195" fill="#16a34a"/>
+
+  <!-- Bold text below -->
+  <text x="200" y="380" font-family="Impact, Arial Black, sans-serif" font-size="80" font-weight="900" fill="#047857" text-anchor="middle" letter-spacing="2">OCP</text>
+</svg>
