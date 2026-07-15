@@ -1,6 +1,7 @@
 -- Database creation (run this manually in phpMyAdmin or mysql client if database does not exist)
 CREATE DATABASE IF NOT EXISTS ocp_surete_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE ocp_surete_db;
+SET NAMES utf8mb4;
 
 -- 1. Sites Table
 CREATE TABLE IF NOT EXISTS sites (
