@@ -137,11 +137,11 @@ cd SafeOps
 ```
 
 ### 2. Lancement Rapide (Docker Compose 🐳)
-Si Docker est installé, démarrez la base de données, l'API et le client en une commande :
+Si Docker Desktop est démarré sur votre machine, lancez la construction et le démarrage des conteneurs :
 ```bash
 docker-compose up --build
 ```
-L'application client est alors accessible sur le port `80` et l'API sur le port `5001`.
+L'application client est accessible sur **`http://localhost:5173`** et l'API backend sur **`http://localhost:5002`**. La base de données MySQL est disponible sur le port standard `3306`.
 
 ### 3. Lancement Manuel
 
