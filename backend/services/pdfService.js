@@ -50,7 +50,7 @@ exports.generateAndUploadPV = (pvData) => {
       doc.fontSize(10).fillColor('#475569').text('Plateforme de Gestion de la Maintenance Sûreté', 50, 80);
       
       // Separator Line
-      doc.moveTo(50, 95).lineTo(545, 95).strokeColor('#15803d').strokeWidth(2).stroke();
+      doc.moveTo(50, 95).lineTo(545, 95).strokeColor('#15803d').lineWidth(2).stroke();
 
       // Main Title
       doc.fillColor('#0f172a').fontSize(16).text(`PROCÈS-VERBAL : ${pvData.code}`, 50, 115, { underline: true });
@@ -59,7 +59,7 @@ exports.generateAndUploadPV = (pvData) => {
       doc.text(`Date de génération : ${new Date().toLocaleDateString('fr-FR')}`, 50, 175);
 
       // Separator
-      doc.moveTo(50, 195).lineTo(545, 195).strokeColor('#cbd5e1').strokeWidth(1).stroke();
+      doc.moveTo(50, 195).lineTo(545, 195).strokeColor('#cbd5e1').lineWidth(1).stroke();
 
       // Equipment Section
       doc.fillColor('#15803d').fontSize(13).text('ÉQUIPEMENT CONCERNÉ', 50, 210);
@@ -96,7 +96,7 @@ exports.generateAndUploadPV = (pvData) => {
       }
 
       // Visas Footer Block
-      doc.moveTo(50, 520).lineTo(545, 520).strokeColor('#cbd5e1').strokeWidth(1).stroke();
+      doc.moveTo(50, 520).lineTo(545, 520).strokeColor('#cbd5e1').lineWidth(1).stroke();
       doc.fillColor('#475569').fontSize(11);
       
       // Left Visa (EDET)

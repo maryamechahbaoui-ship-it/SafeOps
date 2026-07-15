@@ -32,7 +32,7 @@ export default function PVHistory({ user, token }) {
 
   const handleSignVisa = async (pvId) => {
     try {
-      const res = await fetch(`/api/pv/${pvId}/sign`, {
+      const res = await fetch(`/api/pv/${pvId}/sign-ocp`, {
         method: 'POST',
         credentials: 'include', headers: {
           'Content-Type': 'application/json',

@@ -56,9 +56,11 @@ exports.assignTechnician = async (req, res) => {
 exports.completePlanning = async (req, res) => {
   const { id } = req.params;
   const { 
-    date_intervention, heure_intervention, outillage, produits, 
-    docsAT, docsFI, docsPTR, docsFPR, results, date_fin, heure_fin,
-    spareParts 
+    date_intervention, heure_intervention, nature_intervention, consigne_securite,
+    outillage, produits, 
+    autorisation_travail, fi, ptr, fpr, 
+    resultats, date_fin, heure_fin,
+    pieces_utilisees 
   } = req.body;
 
   const connection = await db.getConnection();
@@ -87,22 +89,24 @@ exports.completePlanning = async (req, res) => {
     await connection.query('UPDATE plannings SET status = ? WHERE id = ?', ['realise', id]);
 
     // 3. Process spare parts if any (deduct from inventory)
-    if (spareParts && spareParts.length > 0) {
-      for (const part of spareParts) {
-        if (part.article_id && part.used_qty > 0) {
+    if (pieces_utilisees && pieces_utilisees.length > 0) {
+      for (const part of pieces_utilisees) {
+        const articleId = part.article_id || part.id;
+        const usedQty = part.used_qty || part.nb || 0;
+        if (articleId && usedQty > 0) {
           // Check stock
-          const [artRows] = await connection.query('SELECT quantity, name FROM articles WHERE id = ?', [part.article_id]);
+          const [artRows] = await connection.query('SELECT quantity, name FROM articles WHERE id = ?', [articleId]);
           if (artRows.length > 0) {
             const article = artRows[0];
-            const newQty = Math.max(0, article.quantity - parseInt(part.used_qty));
+            const newQty = Math.max(0, article.quantity - parseInt(usedQty));
             
             // Update stock
-            await connection.query('UPDATE articles SET quantity = ? WHERE id = ?', [newQty, part.article_id]);
+            await connection.query('UPDATE articles SET quantity = ? WHERE id = ?', [newQty, articleId]);
             
             // Record movement
             await connection.query(
               'INSERT INTO stock_movements (article_id, type, quantity, description, user_id) VALUES (?, ?, ?, ?, ?)',
-              [part.article_id, 'sortie', part.used_qty, `Consommé lors du préventif ${planning.code}`, req.user.id]
+              [articleId, 'sortie', usedQty, `Consommé lors du préventif ${planning.code}`, req.user.id]
             );
           }
         }
@@ -121,20 +125,20 @@ exports.completePlanning = async (req, res) => {
       heure_demand: '08:00',
       date_intervention,
       heure_intervention,
-      outillage,
-      produits,
-      documentations: {
-        autorisation_travail: !!docsAT,
-        fi: !!docsFI,
-        ptr: !!docsPTR,
-        fpr: !!docsFPR
+      nature_intervention,
+      consigne_securite,
+      outillage_produits_docs: {
+        outillage,
+        produits,
+        autorisation_travail: !!autorisation_travail,
+        fi: !!fi,
+        ptr: !!ptr,
+        fpr: !!fpr
       },
-      results,
-      delais: {
-        date_fin,
-        heure_fin
-      },
-      spare_parts_used: spareParts || []
+      resultats,
+      date_fin,
+      heure_fin,
+      pieces_utilisees: pieces_utilisees || []
     };
 
     // 6. Generate PDF and upload to Cloudinary
@@ -153,7 +157,7 @@ exports.completePlanning = async (req, res) => {
     // 7. Create PV report row with pdf_url
     await connection.query(
       `INSERT INTO pv_reports (code, type, planning_id, ticket_id, title, description, visa_edet_name, visa_ocp_status, site_id, pdf_url, details_json) 
-       VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?)`,
       [
         pvCode, 
         'preventive', 

@@ -173,7 +173,7 @@ export default function TechnicianInterventions({ user, token }) {
         heure_fin: curHeureFin
       };
 
-      const res = await fetch(`/api/tickets/${activeTicket.id}/complete`, {
+      const res = await fetch(`/api/tickets/${activeTicket.id}/resolve`, {
         method: 'POST',
         credentials: 'include', headers: {
           'Content-Type': 'application/json',

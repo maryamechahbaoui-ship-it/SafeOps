@@ -98,8 +98,8 @@ exports.resolveTicket = async (req, res) => {
   const { id } = req.params;
   const { 
     date_intervention, heure_intervention, type_intervention,
-    docsAT, docsFI, docsPTR, docsFPR,
-    diagArriving, diagCause, diagChronology, diagResults, diagAfter, diagObs,
+    documentations,
+    etat_equipement_arriving, cause_panne, chronology_actions, verification_results, etat_equipement_after, observations,
     gti, gtr, date_fin, heure_fin 
   } = req.body;
 
@@ -145,18 +145,18 @@ exports.resolveTicket = async (req, res) => {
       heure_intervention,
       type_intervention,
       documentations: {
-        autorisation_travail: !!docsAT,
-        fi: !!docsFI,
-        ptr: !!docsPTR,
-        fpr: !!docsFPR
+        autorisation_travail: !!(documentations && documentations.autorisation_travail),
+        fi: !!(documentations && documentations.fi),
+        ptr: !!(documentations && documentations.ptr),
+        fpr: !!(documentations && documentations.fpr)
       },
       diagnostic: {
-        etat_equipement_arriving: diagArriving,
-        cause_panne: diagCause,
-        chronology_actions: diagChronology,
-        verification_results: diagResults,
-        etat_equipement_after: diagAfter,
-        observations: diagObs
+        etat_equipement_arriving: etat_equipement_arriving,
+        cause_panne: cause_panne,
+        chronology_actions: chronology_actions,
+        verification_results: verification_results,
+        etat_equipement_after: etat_equipement_after,
+        observations: observations
       },
       delais: {
         gti,

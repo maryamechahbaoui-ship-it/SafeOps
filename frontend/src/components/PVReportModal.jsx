@@ -17,11 +17,7 @@ export default function PVReportModal({ pv, onClose, onSign }) {
         <div className="no-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>
           <h3 style={{ fontWeight: 600, color: 'var(--text-main)' }}>Aperçu du Rapport Officiel</h3>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {pv.pdf_url && (
-              <a href={pv.pdf_url} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                Télécharger le PDF Cloudinary
-              </a>
-            )}
+
             {onSign && (
               <button onClick={() => { onSign(); onClose(); }} className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>
                 Signer le Visa OCP
